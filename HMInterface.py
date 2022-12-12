@@ -11,7 +11,7 @@ from sentence_transformers import SentenceTransformer
 @st.cache(allow_output_mutation=True)
 def init():
     model = SentenceTransformer('Sahajtomar/french_semantic')
-    lr = pickle.load(open('pythonBert/data/models/HSLR2.sav', 'rb'))
+    lr = pickle.load(open('HSLR2.sav', 'rb'))
     return model,lr
 
 model,lr = init()
@@ -35,13 +35,13 @@ bar = above.progress(0)
 titre = below.empty()
 description = below.empty()
 prediction = col3.empty()
-st.sidebar.image("pythonBert/Visualization/logo.png")
+st.sidebar.image("logo.png")
 
 #Disabling warning
 st.set_option('deprecation.showfileUploaderEncoding', False)
 #Choose your own image
 uploaded_file = st.sidebar.file_uploader(" ",type=['xlsx'] )
-with open('pythonBert/Visualization/style.css') as f:
+with open('style.css') as f:
     st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
 
