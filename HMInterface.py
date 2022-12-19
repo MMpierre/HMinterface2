@@ -8,13 +8,13 @@ import json
 from sentence_transformers import SentenceTransformer
 
 
-@st.cache(allow_output_mutation=True)
-def init():
-    model = SentenceTransformer('Sahajtomar/french_semantic')
-    lr = pickle.load(open('HSLR2.sav', 'rb'))
-    return model,lr
+#@st.cache(allow_output_mutation=True)
+#def init():
+#    model = SentenceTransformer('Sahajtomar/french_semantic')
+#    lr = pickle.load(open('HSLR2.sav', 'rb'))
+#    return model,lr
 
-model,lr = init()
+#model,lr = init()
 
 if 'count' not in st.session_state:
 	st.session_state.count = 0
@@ -46,16 +46,16 @@ with open('style.css') as f:
 
 
 
-def classify(i):
-    texte = df.loc[i,"text"][:2000]
-    try:
-        proba = lr.predict_proba(model.encode(texte,convert_to_tensor=True).reshape(1, -1))[0][1]
-    except:
-        try:
-            proba = lr.predict_proba(model.encode(texte[:1000],convert_to_tensor=True).reshape(1, -1))[0][1]
-        except:
-            proba = np.nan()
-    return proba
+#def classify(i):
+#    texte = df.loc[i,"text"][:2000]
+#    try:
+#        proba = lr.predict_proba(model.encode(texte,convert_to_tensor=True).reshape(1, -1))[0][1]
+#    except:
+#        try:
+#            proba = lr.predict_proba(model.encode(texte[:1000],convert_to_tensor=True).reshape(1, -1))[0][1]
+#        except:
+#            proba = np.nan()
+#    return proba
 
 def reset():
     st.session_state.count = 0
@@ -68,8 +68,8 @@ def update():
     bar.progress(st.session_state.count/100)
     titre.write("<h2>" + df.loc[st.session_state.count,"results.title"] + "</2>",unsafe_allow_html=True)
     description.write("<h3>" + df.loc[st.session_state.count,"text"] + "</h3>",unsafe_allow_html=True)
-    proba = classify(st.session_state.count)
-    prediction.write("<h4>" + str('%.1f'%(proba*100)) + "%" + "</h4>",unsafe_allow_html=True)
+    #proba = classify(st.session_state.count)
+    #prediction.write("<h4>" + str('%.1f'%(proba*100)) + "%" + "</h4>",unsafe_allow_html=True)
 
 
 @st.cache(allow_output_mutation=True)
