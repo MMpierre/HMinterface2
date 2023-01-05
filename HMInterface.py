@@ -60,7 +60,7 @@ def suggExport():
 
 @st.cache(allow_output_mutation=True)
 def classify(text):
-    texte = text[:2000]
+    texte = text[:1000]
     try:
         proba2 = lr2.predict_proba(model.encode(texte,convert_to_tensor=True).reshape(1,-1))
         rounded_percentages = [round(x, 3)*100 for x in proba2[0]]
