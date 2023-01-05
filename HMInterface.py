@@ -81,7 +81,6 @@ def addToList():
     st.session_state["metiers"].append(suggExport())
 
 def update():
-    debut = time.time()
     bar.progress(st.session_state.count/100)
     titre.write("<h2>" + st.session_state["df"].loc[st.session_state.count,"title"] + "</2>",unsafe_allow_html=True)
     text = ""
@@ -97,12 +96,8 @@ def update():
         text += " " + st.session_state["df"].loc[st.session_state.count,"resultats_attendus"]   
         col1.write("<h2> Résultats attendus :</2>",unsafe_allow_html=True)
         col1.write("<h3>" + st.session_state["df"].loc[st.session_state.count,"resultats_attendus"]   + "</h3>",unsafe_allow_html=True) 
-    col2.write(time.time() - debut)
-    debut = time.time()
     options = classify(text)
     col2.selectbox("Sélectionnez le métier",options,on_change=addToList,key="selected_option")
-    col2.write(time.time() - debut)
-
 
 @st.cache(allow_output_mutation=True)
 def openFile():
