@@ -97,7 +97,7 @@ def update():
         col1.write("<h2> Résultats attendus :</2>",unsafe_allow_html=True)
         col1.write("<h3>" + st.session_state["df"].loc[st.session_state.count,"resultats_attendus"]   + "</h3>",unsafe_allow_html=True) 
     with col2:
-	options = calcul(text)
+        options = calcul(text)
     col2.selectbox("Sélectionnez le métier",options,on_change=addToList,key="selected_option")
 
 @st.cache(allow_output_mutation=True)
