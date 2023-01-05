@@ -35,13 +35,13 @@ above.write('\n')
 bar = above.progress(0)
 titre = below.empty()
 description = col2.empty()
-st.sidebar.image("pythonBert/Visualization/logo.png")
+st.sidebar.image("logo.png")
 
 #Disabling warning
 st.set_option('deprecation.showfileUploaderEncoding', False)
 #Choose your own image
 uploaded_file = st.sidebar.file_uploader(" ",type=['json'] )
-with open('pythonBert/Visualization/style.css') as f:
+with open('style.css') as f:
     st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
 def suggExport():
