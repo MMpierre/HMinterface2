@@ -59,7 +59,7 @@ def suggExport():
 
 
 @st.cache(allow_output_mutation=True)
-def classify(text):
+def calcul(text):
     texte = text[:1000]
     try:
         proba2 = lr2.predict_proba(model.encode(texte,convert_to_tensor=True).reshape(1,-1))
@@ -96,7 +96,8 @@ def update():
         text += " " + st.session_state["df"].loc[st.session_state.count,"resultats_attendus"]   
         col1.write("<h2> Résultats attendus :</2>",unsafe_allow_html=True)
         col1.write("<h3>" + st.session_state["df"].loc[st.session_state.count,"resultats_attendus"]   + "</h3>",unsafe_allow_html=True) 
-    options = classify(text)
+    with col2:
+	options = calcul(text)
     col2.selectbox("Sélectionnez le métier",options,on_change=addToList,key="selected_option")
 
 @st.cache(allow_output_mutation=True)
