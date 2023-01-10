@@ -80,13 +80,13 @@ if col2.button("Hors-Sujet"):
     st.session_state["HS"].append(st.session_state["df"].loc[st.session_state.count,"id"])
     st.session_state["export"].append(suggExport(True))
     st.session_state.count += 1
-    update()
+
 
 if col4.button("Formation du numérique"):
     st.session_state["GEN"].append(st.session_state["df"].loc[st.session_state.count,"id"])
     st.session_state["export"].append(suggExport(False))
     st.session_state.count += 1
-    update()
+
     
 
 # For newline
