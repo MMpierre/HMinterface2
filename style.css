@@ -17,3 +17,6 @@
     font-weight: bold;
     text-align: center;
   }
+ .stMultiSelect [data-baseweb="tag"] span[title] {
+      white-space: normal; max-width: 100%; overflow-wrap: anywhere;
+  }
