@@ -16,12 +16,12 @@ st.set_page_config(page_title="Classification GEN",
 @st.cache_resource(ttl=3600)
 def init():
     families = ['Traffic Management', 'Test', 'Télécoms', 'Système et réseaux', "Système d'information", 'Support technique', 'Sécurité IT', 'SEA/SEO/SEM', 'Marketing digital', 'Management Produit', 'Logiciel', 'Jeux vidéos', 'IoT / Robotique', 'Impression 3D', 'IA / Machine learning', 'Growth hacking', 'Graphisme / Design', 'Gestion de site web', 'Gestion de projet digital', 'Formation au numérique', 'Entrepreneuriat', 'e-commerce', 'Données personnelles', 'Digital business Development', 'DevOps', 'Développement', 'Data / Big data', 'Cybersécurité', 'Création de vidéos', 'Content management / rédaction web', 'Community management', 'Communication digitale', 'Cloud', 'Blockchain', 'Administration de base de données', 'CRM']
-    model = model_from_json(open("data/models/confirmed.json").read())
-    model.load_weights("data/models/confirmed_w.h5")
-    df = pd.read_excel("data/exports/currentExport.xlsx")
-    liste = pd.read_json("data/jsons/familyTagging.json")
-    tensors = torch.load("data/tensors/tensors.pt")
-    HS = pickle.load(open("data/jsons/crossedOut","rb"))
+    model = model_from_json(open("confirmed.json").read())
+    model.load_weights("confirmed_w.h5")
+    df = pd.read_excel("currentExport.xlsx")
+    liste = pd.read_json("familyTagging.json")
+    tensors = torch.load("tensors.pt")
+    HS = pickle.load(open("crossedOut","rb"))
     OGlength = len(liste)
     return families,model,df,liste,tensors,HS,OGlength
 
@@ -120,5 +120,5 @@ if st.sidebar.button("Mettre à jour le modèle"):
             model.save_weights("data/models/confirmed_w.h5")
 
 if st.sidebar.button("Sauvegarder"):
-    st.session_state["métiers"].to_json("data/jsons/familyTagging.json",orient="records")
-    pickle.dump(st.session_state.HS,open("data/jsons/crossedOut","wb"))
+    st.session_state["métiers"].to_json("familyTagging.json",orient="records")
+    pickle.dump(st.session_state.HS,open("crossedOut","wb"))
