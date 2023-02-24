@@ -8,7 +8,7 @@ import torch
 from keras.layers import Dense
 from keras import Sequential
 st.set_page_config(page_title="Classification GEN",
-                   page_icon="src/Visualization/iconGEN.ico",
+                   page_icon="iconGEN.ico",
                    layout="wide",
     )
 
@@ -36,7 +36,7 @@ above.write('\n')
 titre = below.empty()
 description = col2.empty()
 
-st.sidebar.image("src/Visualization/logoGEN.png")
+st.sidebar.image("logoGEN.png")
 
 with open('src/Visualization/style.css') as f:
     st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
