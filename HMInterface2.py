@@ -87,8 +87,8 @@ st.sidebar.metric('Nombre de classées', len(st.session_state["métiers"]),delta
 if st.sidebar.button("Mettre à jour le modèle"):
     with st.sidebar:
         with st.spinner("Mise à jour"):
-            tensors = torch.load("data/tensors/tensors.pt")
-            df = pd.read_json("data/jsons/familyTagging.json")
+            tensors = torch.load("tensors.pt")
+            df = pd.read_json("familyTagging.json")
 
 
             X = []
@@ -115,9 +115,9 @@ if st.sidebar.button("Mettre à jour le modèle"):
 
             model.fit(X, y, epochs=100)
 
-            with open("data/models/confirmed.json","w") as file:
+            with open("confirmed.json","w") as file:
                 file.write(model.to_json())
-            model.save_weights("data/models/confirmed_w.h5")
+            model.save_weights("confirmed_w.h5")
 
 if st.sidebar.button("Sauvegarder"):
     st.session_state["métiers"].to_json("familyTagging.json",orient="records")
